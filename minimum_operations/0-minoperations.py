@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Module that calculates the minimum number of operations to get n H characters."""
+"""Module that calculates the minimum number of operations
+
+to get n H characters.
+"""
 
 
 def minOperations(n):
