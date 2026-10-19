@@ -37,3 +37,4 @@ Output:
 - Python 3
 - The result must be returned as a list of lists of integers
 - The function must not use external libraries or return the triangle as a string
+
