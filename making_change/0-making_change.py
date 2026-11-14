@@ -21,8 +21,8 @@ def makeChange(coins, total):
     if not coins:
         return -1
 
-    # Initialize a DP array where dp[i] represents the minimum coins needed for amount i.
-    # Fill with total + 1 (an unreachable upper bound) as a placeholder for infinity.
+    # Initialize DP array where dp[i] is the min coins needed for amount i.
+    # Use total + 1 (an unreachable upper bound) as a placeholder for infinity.
     dp = [total + 1] * (total + 1)
     dp[0] = 0
 
