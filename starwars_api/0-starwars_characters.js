@@ -3,33 +3,30 @@
 const request = require('request');
 
 const movieId = process.argv[2];
-const url = `https://swapi-api.hbtn.io/api/films/${movieId}/`;
+const filmUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
-function getData (url) {
-  return new Promise((resolve, reject) => {
-    request(url, (error, response, body) => {
-      if (error) {
-        reject(error);
-      } else if (response.statusCode !== 200) {
-        reject(new Error(`HTTP ${response.statusCode}`));
-      } else {
-        try {
-          resolve(JSON.parse(body));
-        } catch (err) {
-          reject(err);
-        }
-      }
-    });
+request(filmUrl, (err, res, body) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  const characters = JSON.parse(body).characters;
+  printCharacters(characters, 0);
+});
+
+function printCharacters (characters, index) {
+  if (index >= characters.length) {
+    return;
+  }
+
+  request(characters[index], (err, res, body) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    console.log(JSON.parse(body).name);
+    printCharacters(characters, index + 1);
   });
 }
-
-async function main () {
-  const film = await getData(url);
-
-  for (const characterUrl of film.characters) {
-    const character = await getData(characterUrl);
-    console.log(character.name);
-  }
-}
-
-main().catch(console.error);
